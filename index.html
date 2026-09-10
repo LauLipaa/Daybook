@@ -118,8 +118,86 @@ function openComposer(){document.getElementById('composer').classList.add('show'
 function closeComposer(){document.getElementById('composer').classList.remove('show')}
 function like(btn){const s=btn.querySelector('span');let n=parseInt(s.textContent);btn.classList.toggle('liked');s.textContent=btn.classList.contains('liked')?n+1:n}
 function toggleFollow(btn){btn.textContent=btn.textContent==='Suivre'?'Abonné·e':'Suivre';btn.classList.toggle('following')}
-function publishDay(){const title=document.getElementById('title').value||'Une journée à garder';const place=document.getElementById('place').value||'Quelque part';const story=document.getElementById('story').value||'Quelques petits moments de ma journée.';const files=[...document.getElementById('photos').files];const card=document.createElement('article');card.className='day-card new-card';const pics=files.slice(0,3).map((f,i)=>{const u=URL.createObjectURL(f);return `<div class="photo uploaded full-photo" style="background-image:url('${u}')"><span>${['09:12','14:36','20:08'][i]}</span></div>`}).join('');card.innerHTML=`<header class="day-head"><div class="person"><div class="mini-avatar a5">L</div><div><b>LauLipaa</b><span>${escapeHtml(place)} · à l’instant</span></div></div><button class="more">•••</button></header><div class="editorial">${pics}<div class="caption"><small>MA JOURNÉE</small><h2>${escapeHtml(title)}</h2><p>${escapeHtml(story)}</p></div></div><footer class="card-foot"><button class="like" onclick="like(this)">♡ <span>0</span></button><button>♡ 0</button><button>↗ Partager</button></footer>`;document.getElementById('feed').prepend(card);document.getElementById('dayCount').textContent=parseInt(document.getElementById('dayCount').textContent)+1;closeComposer();['title','place','story'].forEach(id=>document.getElementById(id).value='');document.getElementById('photos').value=''}
+function publishDay(){
+  const title=document.getElementById('title').value||'Une journée à garder';
+  const place=document.getElementById('place').value||'Quelque part';
+  const story=document.getElementById('story').value||'Quelques petits moments de ma journée.';
+  const files=[...document.getElementById('photos').files];
+
+  if(files.length===0){
+    alert('Ajoute au moins une photo 📸');
+    return;
+  }
+
+  const readerPromises=files.slice(0,3).map(file=>{
+    return new Promise(resolve=>{
+      const reader=new FileReader();
+      reader.onload=()=>resolve(reader.result);
+      reader.readAsDataURL(file);
+    });
+  });
+
+  Promise.all(readerPromises).then(images=>{
+    const post={
+      title,
+      place,
+      story,
+      images,
+      time:new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})
+    };
+
+    const saved=JSON.parse(localStorage.getItem('daybookPosts')||'[]');
+    saved.unshift(post);
+    localStorage.setItem('daybookPosts',JSON.stringify(saved));
+
+    displaySavedPost(post);
+
+    document.getElementById('dayCount').textContent=
+      parseInt(document.getElementById('dayCount').textContent)+1;
+
+    closeComposer();
+    ['title','place','story'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('photos').value='';
+  });
+}
+
+function displaySavedPost(post){
+  const card=document.createElement('article');
+  card.className='day-card new-card';
+
+  const pics=post.images.map((img,i)=>{
+    return `<div class="photo uploaded full-photo" style="background-image:url('${img}')">
+      <span>${post.time}</span>
+    </div>`;
+  }).join('');
+
+  card.innerHTML=`
+    <header class="day-head">
+      <div class="person">
+        <div class="mini-avatar a5">L</div>
+        <div><b>LauLipaa</b><span>${escapeHtml(post.place)} · aujourd’hui</span></div>
+      </div>
+      <button class="more">•••</button>
+    </header>
+    <div class="editorial">
+      ${pics}
+      <div class="caption">
+        <small>MA JOURNÉE</small>
+        <h2>${escapeHtml(post.title)}</h2>
+        <p>${escapeHtml(post.story)}</p>
+      </div>
+    </div>
+    <footer class="card-foot">
+      <button class="like" onclick="like(this)">♡ <span>0</span></button>
+      <button>♡ 0</button>
+      <button>↗ Partager</button>
+    </footer>`;
+
+  document.getElementById('feed').prepend(card);
+}
 function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+const savedPosts=JSON.parse(localStorage.getItem('daybookPosts')||'[]');
+savedPosts.reverse().forEach(displaySavedPost);
 </script>
 </body>
 </html>
