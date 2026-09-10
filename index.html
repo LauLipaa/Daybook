@@ -3,131 +3,77 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DAYBOOK — garder les beaux jours</title>
-  <meta name="description" content="Un journal social visuel pour garder les petits moments du quotidien.">
+  <title>DAYBOOK — LauLipaa ♡</title>
+  <meta name="description" content="Le journal visuel de LauLipaa sur DAYBOOK.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;1,500;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .profile-page{max-width:1180px;margin:0 auto;padding:42px 22px 100px}
+    .profile-card{background:rgba(255,255,255,.9);border:1px solid rgba(80,55,60,.1);border-radius:30px;padding:28px;box-shadow:0 14px 40px rgba(100,65,75,.08);position:relative;overflow:hidden}
+    .profile-card:before{content:"";position:absolute;inset:0 auto auto 0;width:100%;height:8px;background:repeating-linear-gradient(90deg,#f7c9d6 0 22px,#fff 22px 44px)}
+    .profile-main{display:flex;gap:26px;align-items:center}.profile-avatar{width:126px;height:126px;border-radius:50%;display:grid;place-items:center;font-family:"Playfair Display",serif;font-size:46px;background:linear-gradient(135deg,#f7d5df,#fff3b9 55%,#d9f1e6);border:7px solid #fff;box-shadow:0 8px 24px rgba(90,55,65,.14);flex:none}.profile-info{flex:1}.profile-name{font-family:"Playfair Display",serif;font-size:38px;margin:0 0 6px;color:#493c40}.profile-handle{font-family:"DM Mono",monospace;font-size:12px;color:#9b7e86}.profile-bio{max-width:620px;line-height:1.6;margin:12px 0 18px;color:#63565b}.profile-stats{display:flex;gap:28px;flex-wrap:wrap}.profile-stats b{font-size:20px;display:block}.profile-stats span{font-size:12px;color:#8c777e}.profile-actions{display:flex;gap:10px;align-self:flex-start}.edit-btn{border:0;border-radius:999px;padding:11px 18px;background:#f7d5df;color:#5d454c;font-weight:700;cursor:pointer}.profile-section{margin-top:28px}.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.section-title h2{font-family:"Playfair Display",serif;font-size:26px;margin:0}.section-title span{font-size:12px;color:#8f7880}.tags{display:flex;gap:9px;flex-wrap:wrap}.tag{padding:10px 14px;border-radius:999px;background:#fff;border:1px solid rgba(80,55,60,.08);box-shadow:0 5px 15px rgba(100,65,75,.05);font-size:13px}.profile-gallery{columns:3 240px;column-gap:16px}.gallery-card{break-inside:avoid;margin:0 0 16px;background:#fff;border-radius:20px;overflow:hidden;border:1px solid rgba(80,55,60,.08);box-shadow:0 7px 22px rgba(100,65,75,.06)}.gallery-photo{height:220px;background:linear-gradient(135deg,#f7d5df,#fdf8ee 50%,#dcefe7);display:grid;place-items:center;font-size:34px}.gallery-card:nth-child(2) .gallery-photo{height:290px;background:linear-gradient(145deg,#dceafa,#fff0c9)}.gallery-card:nth-child(3) .gallery-photo{height:190px;background:linear-gradient(145deg,#eadcf4,#f9d7df)}.gallery-card:nth-child(4) .gallery-photo{height:260px;background:linear-gradient(145deg,#dff1e7,#fff5d2)}.gallery-text{padding:14px}.gallery-text small{font-family:"DM Mono",monospace;color:#a1848d;font-size:10px}.gallery-text h3{margin:5px 0 4px;font-family:"Playfair Display",serif;font-size:20px}.gallery-text p{margin:0;color:#77676d;font-size:13px;line-height:1.45}.edit-panel{display:none;margin-top:18px;padding:18px;border-radius:20px;background:#fff7fa}.edit-panel.show{display:grid;gap:10px}.edit-panel input,.edit-panel textarea{width:100%;box-sizing:border-box;border:1px solid #ead6dc;border-radius:14px;padding:11px;font:inherit;background:#fff}.edit-panel textarea{min-height:80px}.back-link{display:inline-flex;margin-bottom:18px;text-decoration:none;color:#705961;font-weight:700}.profile-note{text-align:center;margin-top:26px;color:#9a8189;font-family:"Playfair Display",serif;font-style:italic}
+    @media(max-width:700px){.profile-page{padding:25px 14px 90px}.profile-card{padding:22px}.profile-main{align-items:flex-start;flex-direction:column}.profile-avatar{width:98px;height:98px;font-size:38px}.profile-name{font-size:31px}.profile-actions{width:100%}.edit-btn{width:100%}.profile-stats{gap:20px}.profile-gallery{columns:2 150px;column-gap:10px}.gallery-card{margin-bottom:10px}.gallery-photo{height:170px}.gallery-card:nth-child(2) .gallery-photo{height:210px}.gallery-card:nth-child(3) .gallery-photo{height:150px}.gallery-card:nth-child(4) .gallery-photo{height:190px}}
+  </style>
 </head>
 <body>
   <div class="gingham"></div>
   <nav class="nav">
-    <a class="logo" href="#"><span>✿</span> DAYBOOK</a>
-    <div class="navlinks">
-      <a class="active" href="#accueil">Accueil</a>
-      <a href="#decouvrir">Découvrir</a>
-      <a href="#abonnements">Abonnements</a>
-    </div>
+    <a class="logo" href="#accueil"><span>✿</span> DAYBOOK</a>
+    <div class="navlinks"><a href="#accueil">Accueil</a><a href="#decouvrir">Découvrir</a><a href="#abonnements">Abonnements</a></div>
     <button class="search" aria-label="Rechercher">⌕</button>
-    <button class="avatar" aria-label="Mon profil">L</button>
+    <button class="avatar" aria-label="Mon profil" onclick="showProfile()">L</button>
   </nav>
 
   <main id="accueil">
-    <section class="hero">
-      <div class="hero-copy-wrap">
-        <div class="sticker flower">✿</div>
-        <p class="eyebrow">UN JOURNAL SOCIAL VISUEL</p>
-        <h1>Les jours ordinaires,<br><em>joliment conservés.</em></h1>
-        <p class="hero-copy">Des photos, quelques mots et les petits détails qui méritent de rester. Raconte ta journée, découvre celles des autres et garde tes souvenirs au même endroit.</p>
-        <button class="primary" onclick="openComposer()">Raconter ma journée <span>＋</span></button>
-      </div>
-      <div class="hero-card">
-        <div class="tape"></div>
-        <span class="date">09 · 09 · 26</span>
-        <p>« Aujourd’hui n’avait rien<br>de spécial. C’est justement<br>pour ça que je veux le garder. »</p>
-        <small>— mila · Bruxelles</small>
-        <div class="hero-doodle">♡</div>
-      </div>
-    </section>
-
-    <section class="toolbar">
-      <div class="filters">
-        <button class="filter active">Pour toi</button>
-        <button class="filter">Récent</button>
-        <button class="filter">Abonnements</button>
-      </div>
-      <button class="small-btn" onclick="openComposer()">＋ Nouvelle journée</button>
-    </section>
-
-    <section class="layout">
-      <section class="feed" id="feed">
-        <article class="day-card">
-          <header class="day-head">
-            <div class="person"><div class="mini-avatar a1">M</div><div><b>mila</b><span>Bruxelles · aujourd’hui</span></div></div>
-            <button class="more">•••</button>
-          </header>
-          <div class="editorial">
-            <div class="photo p1"><span>08:14</span></div>
-            <div class="caption c1"><small>MERCREDI</small><h2>Un matin tout doux.</h2><p>Café, fenêtre ouverte et aucune raison de se presser.</p></div>
-            <div class="photo p2"><span>12:47</span></div>
-            <div class="quote">« J’ai remarqué<br>la lumière avant<br>de remarquer l’heure. »</div>
-            <div class="photo p3"><span>18:31</span></div>
-            <div class="tiny-note">♫ Pink + White<br><i>Frank Ocean</i></div>
-          </div>
-          <footer class="card-foot"><button class="like" onclick="like(this)">♡ <span>184</span></button><button>♡ 17</button><button>↗ Partager</button></footer>
-        </article>
-
-        <article class="day-card offset">
-          <header class="day-head">
-            <div class="person"><div class="mini-avatar a2">N</div><div><b>noah</b><span>Paris · hier</span></div></div>
-            <button class="follow" onclick="toggleFollow(this)">Suivre</button>
-          </header>
-          <div class="editorial warm">
-            <div class="caption"><small>8 SEPTEMBRE</small><h2>24 heures à Paris.</h2><p>Métro, croissant raté, trois librairies et un ciel qui a sauvé la soirée.</p></div>
-            <div class="photo p4"><span>16:02</span></div>
-            <div class="photo p5"><span>20:18</span></div>
-            <div class="stamp">PARIS<br><strong>VIII</strong></div>
-          </div>
-          <footer class="card-foot"><button class="like" onclick="like(this)">♡ <span>329</span></button><button>♡ 42</button><button>↗ Partager</button></footer>
-        </article>
-      </section>
-
-      <aside class="side-card">
-        <div class="side-title"><span>Suggestions</span><a href="#decouvrir">Voir tout</a></div>
-        <div class="suggestion"><div class="mini-avatar a3">E</div><div><b>emma</b><span>@emma.dlr</span></div><button onclick="toggleFollow(this)">Suivre</button></div>
-        <div class="suggestion"><div class="mini-avatar a4">I</div><div><b>ines</b><span>@ines.cafe</span></div><button onclick="toggleFollow(this)">Suivre</button></div>
-        <div class="suggestion"><div class="mini-avatar a5">L</div><div><b>lucas</b><span>@lucas.photos</span></div><button onclick="toggleFollow(this)">Suivre</button></div>
-        <div class="side-note">✦<br><span>Garde les petits<br>moments.</span></div>
-      </aside>
-    </section>
+    <section class="hero"><div class="hero-copy-wrap"><div class="sticker flower">✿</div><p class="eyebrow">UN JOURNAL SOCIAL VISUEL</p><h1>Les jours ordinaires,<br><em>joliment conservés.</em></h1><p class="hero-copy">Des photos, quelques mots et les petits détails qui méritent de rester. Raconte ta journée, découvre celles des autres et garde tes souvenirs au même endroit.</p><button class="primary" onclick="openComposer()">Raconter ma journée <span>＋</span></button></div><div class="hero-card"><div class="tape"></div><span class="date">09 · 09 · 26</span><p>« Aujourd’hui n’avait rien<br>de spécial. C’est justement<br>pour ça que je veux le garder. »</p><small>— mila · Bruxelles</small><div class="hero-doodle">♡</div></div></section>
+    <section class="toolbar"><div class="filters"><button class="filter active">Pour toi</button><button class="filter">Récent</button><button class="filter">Abonnements</button></div><button class="small-btn" onclick="openComposer()">＋ Nouvelle journée</button></section>
+    <section class="layout"><section class="feed" id="feed">
+      <article class="day-card"><header class="day-head"><div class="person"><div class="mini-avatar a1">M</div><div><b>mila</b><span>Bruxelles · aujourd’hui</span></div></div><button class="more">•••</button></header><div class="editorial"><div class="photo p1"><span>08:14</span></div><div class="caption c1"><small>MERCREDI</small><h2>Un matin tout doux.</h2><p>Café, fenêtre ouverte et aucune raison de se presser.</p></div><div class="photo p2"><span>12:47</span></div><div class="quote">« J’ai remarqué<br>la lumière avant<br>de remarquer l’heure. »</div><div class="photo p3"><span>18:31</span></div><div class="tiny-note">♫ Pink + White<br><i>Frank Ocean</i></div></div><footer class="card-foot"><button class="like" onclick="like(this)">♡ <span>184</span></button><button>♡ 17</button><button>↗ Partager</button></footer></article>
+      <article class="day-card offset"><header class="day-head"><div class="person"><div class="mini-avatar a2">N</div><div><b>noah</b><span>Paris · hier</span></div></div><button class="follow" onclick="toggleFollow(this)">Suivre</button></header><div class="editorial warm"><div class="caption"><small>8 SEPTEMBRE</small><h2>24 heures à Paris.</h2><p>Métro, croissant raté, trois librairies et un ciel qui a sauvé la soirée.</p></div><div class="photo p4"><span>16:02</span></div><div class="photo p5"><span>20:18</span></div><div class="stamp">PARIS<br><strong>VIII</strong></div></div><footer class="card-foot"><button class="like" onclick="like(this)">♡ <span>329</span></button><button>♡ 42</button><button>↗ Partager</button></footer></article>
+    </section><aside class="side-card"><div class="side-title"><span>Suggestions</span><a href="#decouvrir">Voir tout</a></div><div class="suggestion"><div class="mini-avatar a3">E</div><div><b>emma</b><span>@emma.dlr</span></div><button onclick="toggleFollow(this)">Suivre</button></div><div class="suggestion"><div class="mini-avatar a4">I</div><div><b>ines</b><span>@ines.cafe</span></div><button onclick="toggleFollow(this)">Suivre</button></div><div class="suggestion"><div class="mini-avatar a5">L</div><div><b>lucas</b><span>@lucas.photos</span></div><button onclick="toggleFollow(this)">Suivre</button></div><div class="side-note">✦<br><span>Garde les petits<br>moments.</span></div></aside></section>
   </main>
 
-  <div class="mobile-nav"><a class="active" href="#accueil">⌂<span>Accueil</span></a><a href="#decouvrir">⌕<span>Découvrir</span></a><button onclick="openComposer()">＋</button><a href="#abonnements">♧<span>Abonnements</span></a><a href="#">♙<span>Profil</span></a></div>
-
-  <div class="composer-backdrop" id="composer">
-    <div class="composer">
-      <button class="close" onclick="closeComposer()">×</button>
-      <div class="composer-flower">✿</div>
-      <p class="eyebrow">NOUVELLE JOURNÉE</p>
-      <h2>Qu’est-ce que tu veux garder de cette journée ?</h2>
-      <label>Titre <input id="title" placeholder="Un mercredi tout simple"></label>
-      <label>Lieu <input id="place" placeholder="Bruxelles"></label>
-      <label>Quelques mots <textarea id="story" placeholder="Ce qui s’est passé aujourd’hui…"></textarea></label>
-      <label>Photos <input id="photos" type="file" accept="image/*" multiple></label>
-      <button class="primary" onclick="publishDay()">Publier ma journée <span>＋</span></button>
-      <p class="hint">Pour le moment, les photos sont prévisualisées uniquement sur cet appareil.</p>
+  <section class="profile-page" id="profile" style="display:none">
+    <a class="back-link" href="#accueil" onclick="showHome()">← Retour à l’accueil</a>
+    <div class="profile-card">
+      <div class="profile-main">
+        <div class="profile-avatar" id="profileAvatar">L♡</div>
+        <div class="profile-info">
+          <div class="profile-handle">@laulipaa</div>
+          <h1 class="profile-name">LauLipaa ♡</h1>
+          <p class="profile-bio" id="bioText">juste des petits bouts de ma vie ♡ photos, pensées, envies & jolies choses</p>
+          <div class="profile-stats"><div><b id="dayCount">12</b><span>journées</span></div><div><b>248</b><span>abonnés</span></div><div><b>96</b><span>abonnements</span></div></div>
+        </div>
+        <div class="profile-actions"><button class="edit-btn" onclick="toggleEdit()">Modifier le profil</button></div>
+      </div>
+      <div class="edit-panel" id="editPanel"><label>Bio<input id="bioInput" value="juste des petits bouts de ma vie ♡ photos, pensées, envies & jolies choses"></label><button class="edit-btn" onclick="saveProfile()">Enregistrer ♡</button></div>
     </div>
-  </div>
+    <section class="profile-section"><div class="section-title"><h2>À propos de moi</h2><span>petites choses que j’aime</span></div><div class="tags"><span class="tag">🎧 musique</span><span class="tag">📷 photo</span><span class="tag">☕ café</span><span class="tag">🎀 mode</span><span class="tag">🌷 fleurs</span><span class="tag">🎬 films</span><span class="tag">✈️ escapades</span></div></section>
+    <section class="profile-section"><div class="section-title"><h2>Mes journées</h2><span>12 souvenirs</span></div><div class="profile-gallery">
+      <article class="gallery-card"><div class="gallery-photo">☕</div><div class="gallery-text"><small>09 SEPTEMBRE</small><h3>Un matin tranquille.</h3><p>Café, playlist douce et lumière sur le bureau.</p></div></article>
+      <article class="gallery-card"><div class="gallery-photo">🌷</div><div class="gallery-text"><small>07 SEPTEMBRE</small><h3>Petites fleurs.</h3><p>Une promenade sans but précis, juste pour regarder autour de moi.</p></div></article>
+      <article class="gallery-card"><div class="gallery-photo">🎧</div><div class="gallery-text"><small>03 SEPTEMBRE</small><h3>Ma playlist du moment.</h3><p>Quelques chansons que j’écoute en boucle.</p></div></article>
+      <article class="gallery-card"><div class="gallery-photo">✈️</div><div class="gallery-text"><small>30 AOÛT</small><h3>Une petite escapade.</h3><p>Des photos floues, un joli ciel et beaucoup trop de cafés.</p></div></article>
+    </div></section>
+    <p class="profile-note">« garder les petits moments, surtout ceux qui semblent ordinaires. » ♡</p>
+  </section>
+
+  <div class="mobile-nav"><a class="active" href="#accueil" onclick="showHome()">⌂<span>Accueil</span></a><a href="#decouvrir">⌕<span>Découvrir</span></a><button onclick="openComposer()">＋</button><a href="#abonnements">♧<span>Abonnements</span></a><a href="#profile" onclick="showProfile()">♙<span>Profil</span></a></div>
+
+  <div class="composer-backdrop" id="composer"><div class="composer"><button class="close" onclick="closeComposer()">×</button><div class="composer-flower">✿</div><p class="eyebrow">NOUVELLE JOURNÉE</p><h2>Qu’est-ce que tu veux garder de cette journée ?</h2><label>Titre <input id="title" placeholder="Un mercredi tout simple"></label><label>Lieu <input id="place" placeholder="Bruxelles"></label><label>Quelques mots <textarea id="story" placeholder="Ce qui s’est passé aujourd’hui…"></textarea></label><label>Photos <input id="photos" type="file" accept="image/*" multiple></label><button class="primary" onclick="publishDay()">Publier ma journée <span>＋</span></button><p class="hint">Pour le moment, les photos sont prévisualisées uniquement sur cet appareil.</p></div></div>
 
 <script>
+function showProfile(){document.getElementById('accueil').style.display='none';document.getElementById('profile').style.display='block';window.scrollTo({top:0,behavior:'smooth'})}
+function showHome(){document.getElementById('profile').style.display='none';document.getElementById('accueil').style.display='block';window.scrollTo({top:0,behavior:'smooth'})}
+function toggleEdit(){document.getElementById('editPanel').classList.toggle('show')}
+function saveProfile(){const v=document.getElementById('bioInput').value.trim();if(v)document.getElementById('bioText').textContent=v;document.getElementById('editPanel').classList.remove('show')}
 function openComposer(){document.getElementById('composer').classList.add('show')}
 function closeComposer(){document.getElementById('composer').classList.remove('show')}
-function like(btn){const s=btn.querySelector('span'); let n=parseInt(s.textContent); btn.classList.toggle('liked'); s.textContent=btn.classList.contains('liked')?n+1:n}
+function like(btn){const s=btn.querySelector('span');let n=parseInt(s.textContent);btn.classList.toggle('liked');s.textContent=btn.classList.contains('liked')?n+1:n}
 function toggleFollow(btn){btn.textContent=btn.textContent==='Suivre'?'Abonné·e':'Suivre';btn.classList.toggle('following')}
-function publishDay(){
-  const title=document.getElementById('title').value || 'Une journée à garder';
-  const place=document.getElementById('place').value || 'Quelque part';
-  const story=document.getElementById('story').value || 'Quelques petits moments de ma journée.';
-  const files=[...document.getElementById('photos').files];
-  const card=document.createElement('article'); card.className='day-card new-card';
-  const pics=files.slice(0,3).map((f,i)=>{const u=URL.createObjectURL(f);return `<div class="photo uploaded" style="background-image:url('${u}')"><span>${['09:12','14:36','20:08'][i]}</span></div>`}).join('');
-  card.innerHTML=`<header class="day-head"><div class="person"><div class="mini-avatar a5">L</div><div><b>toi</b><span>${escapeHtml(place)} · à l’instant</span></div></div><button class="more">•••</button></header>
-  <div class="editorial">${pics}<div class="caption"><small>MA JOURNÉE</small><h2>${escapeHtml(title)}</h2><p>${escapeHtml(story)}</p></div></div>
-  <footer class="card-foot"><button class="like" onclick="like(this)">♡ <span>0</span></button><button>♡ 0</button><button>↗ Partager</button></footer>`;
-  document.getElementById('feed').prepend(card); closeComposer();
-  ['title','place','story'].forEach(id=>document.getElementById(id).value='');document.getElementById('photos').value='';
-}
+function publishDay(){const title=document.getElementById('title').value||'Une journée à garder';const place=document.getElementById('place').value||'Quelque part';const story=document.getElementById('story').value||'Quelques petits moments de ma journée.';const files=[...document.getElementById('photos').files];const card=document.createElement('article');card.className='day-card new-card';const pics=files.slice(0,3).map((f,i)=>{const u=URL.createObjectURL(f);return `<div class="photo uploaded" style="background-image:url('${u}')"><span>${['09:12','14:36','20:08'][i]}</span></div>`}).join('');card.innerHTML=`<header class="day-head"><div class="person"><div class="mini-avatar a5">L</div><div><b>LauLipaa</b><span>${escapeHtml(place)} · à l’instant</span></div></div><button class="more">•••</button></header><div class="editorial">${pics}<div class="caption"><small>MA JOURNÉE</small><h2>${escapeHtml(title)}</h2><p>${escapeHtml(story)}</p></div></div><footer class="card-foot"><button class="like" onclick="like(this)">♡ <span>0</span></button><button>♡ 0</button><button>↗ Partager</button></footer>`;document.getElementById('feed').prepend(card);document.getElementById('dayCount').textContent=parseInt(document.getElementById('dayCount').textContent)+1;closeComposer();['title','place','story'].forEach(id=>document.getElementById(id).value='');document.getElementById('photos').value=''}
 function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
 </script>
 </body>
